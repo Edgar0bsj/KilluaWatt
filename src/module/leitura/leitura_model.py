@@ -1,6 +1,6 @@
 from src.database.database_config import Base
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date, datetime
 from sqlalchemy import DateTime, Date, Integer
 
@@ -25,3 +25,7 @@ class LeituraModel(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.now, onupdate=datetime.now, nullable=False
     )
+
+    # Relacionamento Fatura
+    fatura: Mapped["FaturaModel"] = relationship(back_populates="leitura")  # type: ignore
+    # ================

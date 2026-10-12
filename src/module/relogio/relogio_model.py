@@ -1,7 +1,7 @@
 from src.database.database_config import Base
 
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 from sqlalchemy import DateTime, String, Integer
 
@@ -22,3 +22,7 @@ class RelogioModel(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.now, onupdate=datetime.now, nullable=False
     )
+
+    # Relacionamento Fatura
+    fatura: Mapped["FaturaModel"] = relationship(back_populates="relogio")  # type: ignore
+    # ================
